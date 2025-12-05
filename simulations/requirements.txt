@@ -1,0 +1,22 @@
+# Neptune Prediction Dependencies
+# Python 3.10+ required
+
+# Core scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Visualization
+matplotlib>=3.7.0
+
+# Testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# Optional: Jupyter notebooks for examples
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# Optional: Code quality
+black>=23.0.0
+flake8>=6.0.0
+mypy>=1.0.0
