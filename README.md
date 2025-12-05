@@ -142,16 +142,11 @@ If you use this code in your research, please cite:
 @article{neptune_reconstruction_2025,
   title={The Mathematical Discovery of Neptune: A Complete Reconstruction 
          of Le Verrier's Inverse Problem Method},
-  author={[Authors]},
-  journal={[Journal]},
+  author={Anton Thiriaux},
   year={2025},
-  note={Code available at https://github.com/[repository]/neptune-prediction}
+  note={Code available at https://github.com/antonthiriaux/neptune-prediction}
 }
 ```
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Acknowledgments
 
