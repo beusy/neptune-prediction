@@ -1,155 +1,67 @@
-# Neptune Prediction: Le Verrier's Algorithm Reconstructed
+# Neptune Prediction from Orbital Perturbations
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+**Anton Thiriaux · Don van Beusichem**  
+École Polytechnique
 
-A complete, modern Python implementation of Urbain Le Verrier's 1846 method for predicting Neptune's position from Uranus's orbital deviations. This repository accompanies the paper *"The Mathematical Discovery of Neptune: A Complete Reconstruction of Le Verrier's Inverse Problem Method"*.
+A computational study of the inverse problem underlying Neptune's discovery: inferring an unseen planet from deviations in Uranus's orbit. The implementation combines perturbation theory, Fourier analysis, least-squares estimation, and nonlinear parameter refinement.
 
-## Features
+## Research approach
 
-- **Complete Algorithm Implementation**: Fourier decomposition, least-squares fitting, and Gauss-Newton refinement
-- **Historical Data**: Reconstructed Bouvard observation data (1795–1845)
-- **Monte Carlo Simulations**: Robustness analysis and sensitivity studies
-- **N-Body Validation**: Three-body numerical integration for verification
-- **Comprehensive Unit Tests**: Full test coverage of all modules
+The code represents longitude deviations through harmonic components of the synodic phase, estimates orbital parameters, and refines them against the supplied observations. Supporting modules explore parameter sensitivity, Monte Carlo noise experiments, and numerical three-body dynamics.
 
-## Installation
+The supplied data are described by the original implementation as reconstructed historical observations. They should be distinguished from a directly transcribed and independently verified archival dataset. Numerical accuracy claims require reproducible runs with the stated data, model assumptions, and parameter settings.
+
+## Documentation
+
+- [Research overview](docs/research-overview.md): scope, methods, data, and limitations.
+- [Authorship and provenance](AUTHORS.md): joint attribution and source history.
+- [Citation metadata](CITATION.cff): both authors and this repository's address.
+
+## Repository contents
+
+| Directory | Contents |
+|---|---|
+| `leverrier/` | Orbital mechanics, perturbation model, Fourier analysis, inverse solver, and data utilities |
+| `simulations/` | Monte Carlo, sensitivity, and three-body calculations |
+| `examples/` | Basic prediction, extended analysis, and visualization scripts |
+| `data/` | Reconstructed observation table |
+| `tests/` | Existing numerical tests in `test_leverrier.py` |
+
+## Installation and execution
+
+Python 3.10 or later is specified by the package metadata. From the repository root:
 
 ```bash
-# Clone the repository
-git clone https://github.com/[repository]/neptune-prediction.git
+git clone https://github.com/beusy/neptune-prediction.git
 cd neptune-prediction
-
-# Create virtual environment (recommended)
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python examples/basic_prediction.py
 ```
 
-## Quick Start
+On Windows, activate the environment with `.venv\Scripts\activate`.
 
-```python
-from leverrier import LeVerrierSolver, BouvardData
-
-# Load historical observation data
-data = BouvardData()
-observations = data.get_observations()
-
-# Create solver and run analysis
-solver = LeVerrierSolver(observations)
-result = solver.solve()
-
-# Print results
-print(f"Predicted semi-major axis: {result.semi_major_axis:.2f} AU")
-print(f"Predicted mass: {result.mass:.3e} kg")
-print(f"Predicted longitude: {result.longitude:.1f}°")
-```
-
-## Repository Structure
-
-```
-neptune-prediction/
-├── leverrier/
-│   ├── __init__.py          # Package initialization
-│   ├── constants.py         # Physical and astronomical constants
-│   ├── orbital.py           # Orbital mechanics (Kepler's laws)
-│   ├── perturbation.py      # Perturbation theory and Legendre expansion
-│   ├── fourier.py           # Fourier decomposition of deviations
-│   ├── inverse.py           # Inverse problem solver (Gauss-Newton)
-│   └── data.py              # Bouvard observation data
-├── simulations/
-│   ├── monte_carlo.py       # Monte Carlo robustness analysis
-│   ├── nbody.py             # Three-body numerical integration
-│   └── sensitivity.py       # Parameter sensitivity analysis
-├── tests/
-│   ├── test_orbital.py      # Orbital mechanics tests
-│   ├── test_perturbation.py # Perturbation theory tests
-│   ├── test_fourier.py      # Fourier decomposition tests
-│   ├── test_inverse.py      # Inverse solver tests
-│   └── test_integration.py  # End-to-end integration tests
-├── examples/
-│   ├── basic_prediction.py  # Simple usage example
-│   ├── full_analysis.py     # Complete analysis pipeline
-│   └── visualizations.py    # Plotting and visualization
-├── data/
-│   └── bouvard_1821.csv     # Reconstructed observation data
-├── README.md
-├── requirements.txt
-├── setup.py
-└── LICENSE
-```
-
-## Algorithm Overview
-
-Le Verrier's method solves the inverse problem of celestial mechanics:
-
-1. **Perturbation Expansion**: Express gravitational perturbations using Legendre polynomials
-2. **Fourier Decomposition**: Decompose longitude deviations Δλ(t) into harmonic modes
-3. **Linear Inversion**: Extract orbital parameters from Fourier coefficients
-4. **Nonlinear Refinement**: Refine estimates using Gauss-Newton iteration
-
-### Mathematical Framework
-
-The longitude deviation is modeled as:
-
-$$\Delta\lambda(t) = C_0 + \sum_{k=1}^{K} \left[ C_k \cos(k\phi(t)) + S_k \sin(k\phi(t)) \right]$$
-
-where φ(t) = (n_U - n_N)t + φ_0 is the synodic phase angle.
-
-The semi-major axis is determined from harmonic amplitude ratios:
-
-$$a_X = a_U \left( \frac{\text{Amplitude}_1}{\text{Amplitude}_2} \right)^{1/2}$$
-
-## Running Tests
+To run the existing test suite:
 
 ```bash
-# Run all tests
 python -m pytest tests/ -v
-
-# Run with coverage
-python -m pytest tests/ --cov=leverrier --cov-report=html
-
-# Run specific test module
-python -m pytest tests/test_orbital.py -v
 ```
 
-## Monte Carlo Simulations
-
-```bash
-# Run robustness analysis (1000 trials)
-python -m simulations.monte_carlo --trials 1000 --noise-level 2.0
-
-# Run sensitivity study
-python -m simulations.sensitivity --parameter mass --range 0.5,2.0
-```
-
-## Results Summary
-
-Using the reconstructed Bouvard data, our implementation recovers:
-
-| Parameter | Predicted | Actual | Error |
-|-----------|-----------|--------|-------|
-| Semi-major axis | 30.05 AU | 30.07 AU | 0.07% |
-| Mass | 1.024 × 10²⁶ kg | 1.024 × 10²⁶ kg | < 0.1% |
-| Longitude | 325.1° | 326.2° | 0.34% |
+The computational implementation is preserved from the shared source. This presentation update does not independently validate its numerical results or establish complete test coverage.
 
 ## Citation
 
-If you use this code in your research, please cite:
-
 ```bibtex
-@article{neptune_reconstruction_2025,
-  title={The Mathematical Discovery of Neptune: A Complete Reconstruction 
-         of Le Verrier's Inverse Problem Method},
-  author={Anton Thiriaux},
-  year={2025},
-  note={Code available at https://github.com/antonthiriaux/neptune-prediction}
+@software{thiriaux_vanbeusichem_neptune,
+  author = {Thiriaux, Anton and {van Beusichem}, Don},
+  title = {Neptune Prediction from Orbital Perturbations},
+  url = {https://github.com/beusy/neptune-prediction}
 }
 ```
 
-## Acknowledgments
+## Authors and provenance
 
-- Historical observation data reconstructed from Bouvard (1821)
-- Orbital elements from JPL DE430 ephemerides
-- Physical constants from CODATA 2018 and IAU 2015 resolutions
+**Anton Thiriaux and Don van Beusichem** are credited jointly for this work. This independent repository retains the code and commit history from the [shared source repository](https://github.com/anthiriaux/neptune-prediction).
+
+The source README mentions a manuscript titled *The Mathematical Discovery of Neptune: A Complete Reconstruction of Le Verrier's Inverse Problem Method*, but no manuscript file or document URL was present in the source repository or its releases when this edition was prepared. The research overview linked above documents the available implementation; it is not a replacement for that manuscript.

@@ -11,7 +11,8 @@ with open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 setup(
     name='neptune-prediction',
     version='1.0.0',
-    author_email='anthiriaux@gmail.com',
+    author='Anton Thiriaux and Don van Beusichem',
+    url='https://github.com/beusy/neptune-prediction',
     description="Le Verrier's algorithm for predicting Neptune from Uranus perturbations",
     long_description=long_description,
     long_description_content_type='text/markdown',

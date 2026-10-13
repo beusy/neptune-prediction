@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite both authors when using this work."
+type: software
+title: "Neptune Prediction from Orbital Perturbations"
+authors:
+  - family-names: "Thiriaux"
+    given-names: "Anton"
+  - family-names: "van Beusichem"
+    given-names: "Don"
+repository-code: "https://github.com/beusy/neptune-prediction"
+url: "https://github.com/beusy/neptune-prediction"
+abstract: "Computational study of Neptune prediction from Uranus orbital perturbations using Fourier analysis and inverse modelling."

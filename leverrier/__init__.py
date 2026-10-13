@@ -38,6 +38,7 @@ References
 """
 
 __version__ = "1.0.0"
+__author__ = "Anton Thiriaux and Don van Beusichem"
 
 
 # Core imports
