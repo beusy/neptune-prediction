@@ -3,6 +3,8 @@
 **Anton Thiriaux · Don van Beusichem**  
 École Polytechnique
 
+[Read the full report](neptune-report.pdf) — December 2025.
+
 ## Scientific question
 
 How can an unseen perturbing planet be inferred from discrepancies between observed and predicted planetary motion? This study explores that inverse problem in the context of the prediction of Neptune from Uranus's orbital deviations.

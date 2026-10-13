@@ -15,4 +15,4 @@ The implementation and its existing history were obtained from https://github.co
 
 The attribution and presentation were updated at Don van Beusichem's request. Detailed individual contribution statements are not assigned here.
 
-Historical publications, scientific references, and third-party materials retain their original authorship. No manuscript was included in the source repository or its releases; any subsequently supplied coauthored report should carry both authors' names within the document and in its metadata.
+Historical publications, scientific references, and third-party materials retain their original authorship. The [full report](docs/neptune-report.pdf) credits Anton Thiriaux and Don van Beusichem on its title page.

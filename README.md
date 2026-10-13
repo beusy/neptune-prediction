@@ -13,6 +13,7 @@ The supplied data are described by the original implementation as reconstructed 
 
 ## Documentation
 
+- [Full report (PDF)](docs/neptune-report.pdf): *The Mathematical Discovery of Neptune: Le Verrier’s Predictive Method, A Complete Reconstruction with Original Analysis* — Anton Thiriaux and Don van Beusichem, December 2025.
 - [Research overview](docs/research-overview.md): scope, methods, data, and limitations.
 - [Authorship and provenance](AUTHORS.md): joint attribution and source history.
 - [Citation metadata](CITATION.cff): both authors and this repository's address.
@@ -62,6 +63,4 @@ The computational implementation is preserved from the shared source. This prese
 
 ## Authors and provenance
 
-**Anton Thiriaux and Don van Beusichem** are credited jointly for this work. This independent repository retains the code and commit history from the [shared source repository](https://github.com/anthiriaux/neptune-prediction).
-
-The source README mentions a manuscript titled *The Mathematical Discovery of Neptune: A Complete Reconstruction of Le Verrier's Inverse Problem Method*, but no manuscript file or document URL was present in the source repository or its releases when this edition was prepared. The research overview linked above documents the available implementation; it is not a replacement for that manuscript.
+**Anton Thiriaux and Don van Beusichem** are credited jointly for this work.
